@@ -22,32 +22,40 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="">
+        <form action="start.html" method="POST">
             <div class="input-group">
-                <label for="First Name" name="First Name">First Name</label>
-                <input type="text" id="First Name" name="First Name" required>
+                <label for="username" name="username">Username</label>
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="input-group">
-                <label for="Last Name">Last Name</label>
-                <input type="text" id="Last Name" name="Last Name" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
             </div>
             <button type="submit" class="btn" id="tra">Login</button>
         </form>
     </div>
     <script>
         const onLoginFormSubmit = (evt) => {
-            evt.preventDefault();
-            const formData = new FormData(document.querySelector('form'));
-            const formUsername = formData.get('First Name');
-            const formpassword = formData.get('Last Name');
+        evt.preventDefault();
+        const formData = new FormData(document.querySelector('form'));
+        const formName = formData.get('username');
+        const formPass = formData.get('password');
 
-            Person({ First Name: formUsername }).then(() => {
+        pe.setPerson({
+            username: formName,
+            password: formPass
+            }).then(() => {
             return pe.track('Login'); // your custom event
+        }).catch((error) => {
+                console.error("Error during login tracking:", error);
             });
         };
 
-        const loginForm = document.querySelector('form');
-        loginForm.addEventListener('submit', onLoginFormSubmit);
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.querySelector('form');
+            loginForm.addEventListener('submit', onLoginFormSubmit);
+        });
     </script>
+        <!-- pe.setPerson({ email: username}, {password: password} ); -->
 </body>
 </html>
