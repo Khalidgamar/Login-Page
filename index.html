@@ -3,59 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" class="css">
+    <title>Login Page | Home</title>
     <script>
         (function(e,t,n,o){e.PeopleEventsObject=o;e[o]=e[o]||{init:function(t){e[o].apiKey=t},
-        setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},
-        forgetPerson:function(){e[o].toForgetPerson=true},
-        track:function(){(e[o].q=e[o].q||[]).push(arguments)},
-        updatePerson:function(t){e[o].personToUpdate={person:t}},
-        appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};
-        var r=t.createElement("script");
+        setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},forgetPerson:function(){e[o].toForgetPerson=true},track:function(){(e[o].q=e[o].q||[]).push(arguments)},
+        updatePerson:function(t){e[o].personToUpdate={person:t}},appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};var r=t.createElement("script");
         var s=t.getElementsByTagName("script")[0];r.async=1;r.src=n;s.parentNode.insertBefore(r,s)})
-        (window,document,'https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js','pe');
-        
+        (window,document,"https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js","pe");
+         
         pe.init('a939ec76f7477fc2e2d73468b473bab5-63e6c8b3-77d0-4996-b121-302544c4e5dc');
         </script>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="kh.html">
-            <div class="input-group">
-                <label for="username" name="username">Username</label>
-                <input type="text" id="username" name="username" required>
+    <div class="container">
+        <form>
+            <div class="UN">
+                <label for="city">City</label>
+                <input type="text" class="namecity" name="city" id="city" placeholder="CITY">
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+            <div class="PS">
+                <label for="age">Age</label>
+                <input type="text" class="pass" name="age" id="age" placeholder="AGE">
             </div>
-            <input type="submit" class="btn" id="tra" Name="Login">
-        </form>
+            <input type="submit" name="Login" class="Login">
+    </form>
     </div>
     <script>
         const onLoginFormSubmit = (evt) => {
         evt.preventDefault();
         const formData = new FormData(document.querySelector('form'));
-        const formName = formData.get('username');
-        const formPass = formData.get('password');
+        const formCity = formData.get('city');
+        const formAge = formData.get('age');
 
-        pe.setPerson({
-            "City": formName,
-            "Age": formPass
-            }).then(() => {
+        pe.setPerson({ City: formCity,
+            Age: formAge
+         }).then(() => {
             return pe.track('login'); // your custom event
-        }).catch((error) => {
-                console.error("Error during login tracking:", error);
-            });
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginForm = document.querySelector('form');
-            loginForm.addEventListener('submit', onLoginFormSubmit);
+        })
+        .catch((error) => {
+        console.error('Error setting person or tracking event:', error);
         });
+
+        const loginForm = document.querySelector('form');
+        loginForm.addEventListener('submit', onLoginFormSubmit);
     </script>
-        <!-- pe.setPerson({ email: username}, {password: password} ); -->
 </body>
 </html>
