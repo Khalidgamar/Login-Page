@@ -45,7 +45,7 @@
             username: formName,
             password: formPass
             }).then(() => {
-            return pe.track('Login'); // your custom event
+            return pe.track('login'); // your custom event
         }).catch((error) => {
                 console.error("Error during login tracking:", error);
             });
