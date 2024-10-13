@@ -42,8 +42,8 @@
         const formPass = formData.get('password');
 
         pe.setPerson({
-            City: formName,
-            Age: formPass
+            "City": formName,
+            "Age": formPass
             }).then(() => {
             return pe.track('login'); // your custom event
         }).catch((error) => {
