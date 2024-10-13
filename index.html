@@ -24,12 +24,12 @@
         <h2>Login</h2>
         <form action="">
             <div class="input-group">
-                <label for="username" name="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <label for="First Name" name="First Name">First Name</label>
+                <input type="text" id="First Name" name="First Name" required>
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <label for="Last Name">Last Name</label>
+                <input type="text" id="Last Name" name="Last Name" required>
             </div>
             <button type="submit" class="btn" id="tra">Login</button>
         </form>
@@ -38,10 +38,10 @@
         const onLoginFormSubmit = (evt) => {
             evt.preventDefault();
             const formData = new FormData(document.querySelector('form'));
-            const formUsername = formData.get('username');
-            const formpassword = formData.get('password');
+            const formUsername = formData.get('First Name');
+            const formpassword = formData.get('Last Name');
 
-            Person({ username: formUsername }).then(() => {
+            Person({ First Name: formUsername }).then(() => {
             return pe.track('Login'); // your custom event
             });
         };
