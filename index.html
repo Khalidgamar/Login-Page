@@ -3,43 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        (function(e,t,n,o){e.PeopleEventsObject=o;e[o]=e[o]||{init:function(t){e[o].apiKey=t},
-        setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},
-        forgetPerson:function(){e[o].toForgetPerson=true},
-        track:function(){(e[o].q=e[o].q||[]).push(arguments)},
-        updatePerson:function(t){e[o].personToUpdate={person:t}},
-        appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};
-        var r=t.createElement("script");
-        var s=t.getElementsByTagName("script")[0];r.async=1;r.src=n;s.parentNode.insertBefore(r,s)})
-        (window,document,'https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js','pe');
-        
-        pe.init('a939ec76f7477fc2e2d73468b473bab5-63e6c8b3-77d0-4996-b121-302544c4e5dc');
-        </script>
+    <title>Checkout Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <form class="login-form">
-            <h2>تسجيل دخول</h2>
-            <div class="input-group">
-                <label for="name">الاسم</label>
-                <input type="text" id="name" placeholder="أدخل اسمك" required>
-            </div>
-            <div class="input-group">
-                <label for="dob">تاريخ الميلاد</label>
-                <input type="date" id="dob" required>
-            </div>
-            <button type="submit">دخول</button>
-            <p class="signup-link">ليس لديك حساب؟ <a href="#">تسجيل</a></p>
-        </form>
+    <div class="checkout-container">
+        <h1>صفحة الدفع</h1>
+        <div class="cart-items">
+            <h3>العناصر في عربة التسوق</h3>
+            <ul>
+                <li>المنتج 1: كمبيوتر محمول - $50</li>
+                <li>المنتج 2: ماوس - $50</li>
+            </ul>
+        </div>
+        <div class="total-cost">
+            <h3>إجمالي التكلفة: $100</h3>
+        </div>
+        <button class="button-payment">إتمام الدفع</button>
     </div>
+
+    <!-- تضمين مكتبة People Events SDK -->
     <script>
-        pe.track('log', {
-            name: 'khalid' ,
-            birthdate: 10/14/2024 
+    (function(e,t,n,o){e.PeopleEventsObject=o;e[o]=e[o]||{init:function(t){e[o].apiKey=t},
+    setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},forgetPerson:function(){e[o].toForgetPerson=true},track:function(){(e[o].q=e[o].q||[]).push(arguments)},
+    updatePerson:function(t){e[o].personToUpdate={person:t}},appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};var r=t.createElement("script");
+    var s=t.getElementsByTagName("script")[0];r.async=1;r.src=n;s.parentNode.insertBefore(r,s)})
+    (window,document,"https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js","pe");
+
+    // إدخال مفتاح API الخاص بك من Infobip
+    pe.init('YOUR_API_KEY');
+    </script>
+
+    <!-- كود جافا سكريبت لتتبع حدث الدفع -->
+    <script>
+        const paymentButton = document.querySelector('.button-payment');
+
+        paymentButton.addEventListener('click', async () => {
+            const itemsInCart = [
+                { itemId: "item1", itemName: "Laptop", price: 50 },
+                { itemId: "item2", itemName: "Mouse", price: 50 }
+            ];
+
+            await pe.track("checkoutCompleted", {
+                transactionId: "transaction-1",
+                fromPromoCampaign: true,
+                totalCost: 100,
+                itemsInCart: itemsInCart
             });
+
+            console.log("تم تعقب حدث إتمام الدفع بنجاح!");
+            alert("تم إتمام الدفع!");
+        });
     </script>
 </body>
 </html>
