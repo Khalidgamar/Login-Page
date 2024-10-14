@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>People Events SDK Example</title>
-</head>
-<body>
-
-    <button id="trackButton">اضغط هنا لتتبع الحدث</button>
-
     <script>
         (function(e,t,n,o){e.PeopleEventsObject=o;e[o]=e[o]||{init:function(t){e[o].apiKey=t},
         setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},forgetPerson:function(){e[o].toForgetPerson=true},track:function(){(e[o].q=e[o].q||[]).push(arguments)},
@@ -30,6 +25,9 @@
             alert('تم تتبع الحدث!');
         });
     </script>
+</head>
+<body>
 
+    <button id="trackButton">اضغط هنا لتتبع الحدث</button>
 </body>
 </html>
