@@ -3,31 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>People Events SDK Example</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         (function(e,t,n,o){e.PeopleEventsObject=o;e[o]=e[o]||{init:function(t){e[o].apiKey=t},
         setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},forgetPerson:function(){e[o].toForgetPerson=true},track:function(){(e[o].q=e[o].q||[]).push(arguments)},
         updatePerson:function(t){e[o].personToUpdate={person:t}},appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};var r=t.createElement("script");
         var s=t.getElementsByTagName("script")[0];r.async=1;r.src=n;s.parentNode.insertBefore(r,s)})
         (window,document,"https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js","pe");
-
-        // تهيئة SDK باستخدام مفتاح API الخاص بك
-        pe.init('Your-API-Key');
-
-        // إضافة تتبع لزر النقر
-        document.getElementById('trackButton').addEventListener('click', function() {
-            // تتبع الحدث مع بعض البيانات
-            pe.track('button_clicked', { 
-                label: 'trackButton', 
-                action: 'click', 
-                category: 'interaction' 
-            });
-            alert('تم تتبع الحدث!');
-        });
-    </script>
+         
+        pe.init('a939ec76f7477fc2e2d73468b473bab5-63e6c8b3-77d0-4996-b121-302544c4e5dc');
+        </script>
 </head>
 <body>
-
-    <button id="trackButton">اضغط هنا لتتبع الحدث</button>
+    <div class="login-container">
+        <form class="login-form">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="city">city</label>
+                <input type="text" id="city" name="city" placeholder="Enter city" required>
+            </div>
+            <div class="input-group">
+                <label for="age">age</label>
+                <input type="number" id="age" placeholder="Enter your age" required>
+            </div>
+            <button type="submit">Login</button>
+            <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+        </form>
+    </div>
+    <script>
+        const onLoginFormSubmit = async (evt) => {
+    evt.preventDefault();
+        /* ... */
+        await pe.setPerson({ city: city,
+            age: age
+         }); // profile identifier from the login form
+        await pe.track('login'); // your custom event
+        };
+        
+        const loginForm = document.querySelector('form');
+        loginForm.addEventListener('submit', onLoginFormSubmit);
+    </script>
 </body>
 </html>
