@@ -7,42 +7,39 @@
     <link rel="stylesheet" href="style.css">
     <script>
         (function(e,t,n,o){e.PeopleEventsObject=o;e[o]=e[o]||{init:function(t){e[o].apiKey=t},
-        setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},forgetPerson:function(){e[o].toForgetPerson=true},track:function(){(e[o].q=e[o].q||[]).push(arguments)},
-        updatePerson:function(t){e[o].personToUpdate={person:t}},appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};var r=t.createElement("script");
+        setPerson:function(t,n){e[o].person=t;e[o].personTtl=n},
+        forgetPerson:function(){e[o].toForgetPerson=true},
+        track:function(){(e[o].q=e[o].q||[]).push(arguments)},
+        updatePerson:function(t){e[o].personToUpdate={person:t}},
+        appendToList:function(t,n){e[o].attributeToAppend={attributeName:t,attribute:n}}};
+        var r=t.createElement("script");
         var s=t.getElementsByTagName("script")[0];r.async=1;r.src=n;s.parentNode.insertBefore(r,s)})
-        (window,document,"https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js","pe");
-         
+        (window,document,'https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js','pe');
+        
         pe.init('a939ec76f7477fc2e2d73468b473bab5-63e6c8b3-77d0-4996-b121-302544c4e5dc');
         </script>
 </head>
 <body>
     <div class="login-container">
         <form class="login-form">
-            <h2>Login</h2>
+            <h2>تسجيل دخول</h2>
             <div class="input-group">
-                <label for="city">city</label>
-                <input type="text" id="city" name="city" placeholder="Enter city" required>
+                <label for="name">الاسم</label>
+                <input type="text" id="name" placeholder="أدخل اسمك" required>
             </div>
             <div class="input-group">
-                <label for="age">age</label>
-                <input type="number" id="age" placeholder="Enter your age" required>
+                <label for="dob">تاريخ الميلاد</label>
+                <input type="date" id="dob" required>
             </div>
-            <button type="submit">Login</button>
-            <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+            <button type="submit">دخول</button>
+            <p class="signup-link">ليس لديك حساب؟ <a href="#">تسجيل</a></p>
         </form>
     </div>
     <script>
-        const onLoginFormSubmit = async (evt) => {
-    evt.preventDefault();
-        /* ... */
-        await pe.setPerson({ city: city,
-            age: age
-         }); // profile identifier from the login form
-        await pe.track('login'); // your custom event
-        };
-        
-        const loginForm = document.querySelector('form');
-        loginForm.addEventListener('submit', onLoginFormSubmit);
+        pe.track('log', {
+            name: 'khalid' ,
+            birthdate: 10/14/2024 
+            });
     </script>
 </body>
 </html>
