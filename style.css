@@ -6,66 +6,48 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.login-container {
+.checkout-container {
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    text-align: center;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-form h2 {
+h1 {
     margin-bottom: 20px;
-    text-align: center;
 }
 
-.input-group {
-    margin-bottom: 15px;
+.cart-items {
+    margin-bottom: 20px;
 }
 
-.input-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
+.cart-items ul {
+    list-style-type: none;
 }
 
-.input-group input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
+.total-cost {
+    margin-bottom: 20px;
 }
 
-button {
-    padding: 10px;
-    background-color: #007BFF;
+.button-payment {
+    background-color: #28a745;
     color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-.signup-link {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.signup-link a {
-    color: #007BFF;
-    text-decoration: none;
+.button-payment:hover {
+    background-color: #218838;
 }
